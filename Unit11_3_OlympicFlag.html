@@ -1,0 +1,51 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>How to draw Olympic flag 오륜기 그리기</title>
+  <script>
+    function drawCircle(context, x, y, radius, color) {
+      context.beginPath();
+      context.strokeStyle= color;
+      context.lineWidth= 5;
+      context.arc(x, y, radius, 0, 2* Math.PI); //draw circle
+      context.stroke();
+      context.closePath();
+    }
+  </script>
+</head>
+<body>
+<canvas id="myCanvas" style="background-color: aliceblue" width="300" height="150"></canvas>
+<script>
+  //generate base
+  var canvas= document.getElementById("myCanvas");
+  var context= canvas.getContext("2d");
+
+  //initialization
+  var startX= 60, startY= 60; //starting point
+  var radius= 30;
+  var gap= 7; //between the circles, there's a gap
+  var color= ["blue", "black", "red", "yellow", "green"];
+
+  /*draw circle*/
+  //first row
+  var x= startX;
+  var y= startY;
+  for(var i=0; i< 3; i++){
+    drawCircle(context, x, y, radius, color[i]);
+    x+= radius*2 + gap; //circle's cycle
+    //y is fixed
+  }
+
+  //second row
+  x= radius+ gap/2;
+  y= startY+ radius;
+  for(i=3; i< 5; i++){
+    x+= radius*2 + gap; //the circle's cycle is same as the first row
+    var y= startY+ radius;
+    drawCircle(context, x, y, radius, color[i]);
+  }
+
+</script>
+
+</body>
+</html>
